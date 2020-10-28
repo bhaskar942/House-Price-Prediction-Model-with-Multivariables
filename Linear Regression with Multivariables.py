@@ -22,32 +22,18 @@ print( X.head(), "\n" )
 print( y.head() )
 
 # Featurize X
-#np.mean(X)
-#print(np.std(X))
 X=( X-np.mean(X) )/np.std(X)
 #type(X)--> data fram
-
-
 
 np.set_printoptions(suppress=True)
 print('\n', X.head(), '\n' )
 
 ones=np.ones((m,1),dtype='int64')
-#print(ones)
-#X=X[:,np.newaxis]# this won't work because newaxis just adds a new dimension...i.e 1D will become 2D, 2D will become 3D# adds a new dimension in the data frame ("NOT ARRAY") in this case, dimension is added in column
-#X[0]
 X=np.hstack((ones,X))
-#print( X.head() )
-#print(X)#--now X is an array and not a DataFrame
 alpha=0.03
 iterations=1000
 theta=np.zeros((3,1))
-#print(y.shape)
 y=y[:,np.newaxis] # because X is a 2D array and y was 1D...so for array substraction...array must be of same size
-#print(y.shape)
-#print(y)
-
-
 
 # calculating theta using G.D
 def computeCost(X,y,theta):
@@ -55,18 +41,6 @@ def computeCost(X,y,theta):
     return float( sum(pow(cost,2))/(2*m) )
 # J=computeCost(X,y,theta)
 # print('J with all theta=0 = ',J,'\n')
-
-
-# a=np.array( [ [1,2,3]] )
-# b=np.array( [[4,5,6]] ) 
-# print(a,'\n')
-# print(b,'\n')
-# # print(np.sum(a),'\n')
-# # print(np.mean(a),'\n')
-# # print(np.std(a))
-# # (a-np.mean(a))/np.std(a)
-# print ( np.dot(a,b.T) )
-# print(a@b.T)
 J_history=np.zeros((iterations,1))
 def gradientDescent(X,y,theta,alpha,iterations):
     for i in range(iterations):
@@ -102,17 +76,3 @@ for i in range(3):
     print(float(theta[i]))
 J=computeCost(X,y,theta)
 print(f'\nNow, we have calculated the optimal values of theta\nThe hypothesis function is {J}\n')
-    
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
